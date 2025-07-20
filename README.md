@@ -92,7 +92,7 @@ Timestamp: 2025-07-19 14:32:10
 
 ---
 
-## ▶How to Run the Project
+## How to Run the Project
 
 ### 1. Install the requirements:
 
