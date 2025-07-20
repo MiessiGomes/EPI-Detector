@@ -70,6 +70,17 @@ def main() -> None:
         logger.critical(f"Error: Could not open video source: {SETTINGS.VIDEO_SOURCE}")
         return
 
+    # --- Video Recording Setup ---
+    video_writer = None
+    if SETTINGS.RECORD_VIDEO:
+        output_path = str(SETTINGS.OUTPUT_VIDEO_PATH)
+        fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+        fps = int(cap.get(cv2.CAP_PROP_FPS))
+        width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        video_writer = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
+        logger.info(f"Recording enabled. Output will be saved to {output_path}")
+
     logger.info("Starting 2-Stage EPI Monitor with Re-ID...")
     notified_track_ids: Dict[int, float] = {}
 
@@ -131,12 +142,20 @@ def main() -> None:
             final_frame = draw_final_results(frame, all_detections, all_display_alerts)
             cv2.imshow("EPI Monitor", final_frame)
 
+            if video_writer:
+                resized_frame = cv2.resize(final_frame, (width, height))
+                video_writer.write(resized_frame)
+
             if cv2.waitKey(1) & 0xFF == ord("q"):
-                logger.info("Quit key pressed. Exiting application.")
+                logger.info("Quit key pressed. Finalizing video recording.")
                 break
     finally:
         # --- Cleanup ---
         logger.info("Releasing resources.")
+        if video_writer is not None:
+            logger.info("Finalizing video file. This may take a moment...")
+            video_writer.release()
+            logger.info("Video file has been saved.")
         cap.release()
         cv2.destroyAllWindows()
         close_db_pool()

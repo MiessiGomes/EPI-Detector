@@ -2,9 +2,13 @@
 dataset/*
 dataset/*
 dataset/*
+events/*
 
 # videos
 videos_test/*
 
 # runs
 runs/*
+
+# md
+*.md
