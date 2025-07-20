@@ -10,5 +10,8 @@ videos_test/*
 # runs
 runs/*
 
-# md
+# others
 *.md
+.vscode
+*.pyc
+__init__.py
