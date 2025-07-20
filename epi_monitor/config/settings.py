@@ -29,6 +29,8 @@ class Settings(BaseModel):
     # --- Video Processing ---
     VIDEO_SOURCE: str = "0"
     SKIP_FRAMES: int = 2
+    RECORD_VIDEO: bool = False
+    OUTPUT_VIDEO_PATH: Path
 
     # --- Event Logging ---
     EVENT_LOG_DIR: Path = "events"

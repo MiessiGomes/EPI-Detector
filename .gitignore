@@ -2,9 +2,16 @@
 dataset/*
 dataset/*
 dataset/*
+events/*
 
 # videos
 videos_test/*
 
 # runs
 runs/*
+
+# others
+*.md
+.vscode
+*.pyc
+__init__.py
