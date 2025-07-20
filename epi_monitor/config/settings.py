@@ -30,7 +30,7 @@ class Settings(BaseModel):
 
     # --- Event Logging ---
     EVENT_LOG_DIR: Path = "events"
-    LOG_FILE_PATH: Path = "app.log"
+    LOG_FILE_PATH: Path = "epi_monitor/logs/app.log"
 
     # --- Training Parameters ---
     DATA_PATH: Path

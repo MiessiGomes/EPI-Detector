@@ -4,7 +4,6 @@ import cv2
 import numpy as np
 
 # A dictionary mapping class names to specific BGR colors.
-# This is more robust for the 2-stage pipeline.
 CLASS_NAME_COLORS: Dict[str, tuple[int, int, int]] = {
     # --- EPI Classes ---
     "Abafador de ruido": (220, 20, 60),  # Crimson
