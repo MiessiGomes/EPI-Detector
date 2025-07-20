@@ -7,9 +7,9 @@ from epi_monitor.config.logging_config import setup_logging
 from epi_monitor.config.settings import SETTINGS
 from epi_monitor.core.detector import Detector
 from epi_monitor.core.evaluator import Evaluator
-from epi_monitor.core.notifications import handle_notifications
-from epi_monitor.core.notifier import Notifier
 from epi_monitor.core.processing import process_person_track
+from epi_monitor.notification.notifications import handle_notifications
+from epi_monitor.notification.notifier import Notifier
 from epi_monitor.utils.draw_utils import draw_detections, draw_final_results
 
 DetectionDict = Dict[str, Any]
@@ -101,7 +101,6 @@ def main() -> None:
                 if alerts:
                     non_compliance_by_track_id[track_id] = alerts
 
-        # --- Draw detections first, so the logged image has them ---
         frame_with_detections = draw_detections(frame.copy(), all_detections)
 
         # --- Handle notifications and logging ---
@@ -116,7 +115,6 @@ def main() -> None:
             )
             all_display_alerts.extend(display_alerts)
 
-        # --- Draw final results on the original frame for display ---
         final_frame = draw_final_results(frame, all_detections, all_display_alerts)
         cv2.imshow("EPI Monitor", final_frame)
 
