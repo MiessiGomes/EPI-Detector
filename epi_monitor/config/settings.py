@@ -13,8 +13,10 @@ class Settings(BaseModel):
     Validates and holds all project settings using Pydantic.
     """
 
-    # --- Discord Webhook ---
+    # --- Infrastructure ---
     DISCORD_WEBHOOK_URL: str
+    DATABASE_URL: str  # Example: "postgresql://user:password@host:port/dbname"
+    CAMERA_ID: str = "CAM-01"
 
     # --- Model Configurations ---
     MODEL_PERSON_PATH: Path

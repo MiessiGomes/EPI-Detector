@@ -17,10 +17,14 @@ def process_person_track(
     evaluator: Evaluator,
     epi_class_names: Dict[int, str],
     epi_model_person_class_id: int,
-) -> Tuple[List[DetectionDict], List[str], int]:
+) -> Tuple[List[DetectionDict], List[str], List[str], int]:
     """
     Processes a single tracked person to detect EPIs and check compliance.
-    Returns a list of all detections (person + EPIs), a list of alerts, and the track ID.
+    Returns:
+        - List of all detections (person + EPIs).
+        - List of missing EPI names.
+        - List of worn EPI names.
+        - The track ID.
     """
     track_id = int(box.id.item())
     x1, y1, x2, y2 = [int(i) for i in box.xyxy[0]]
@@ -37,7 +41,7 @@ def process_person_track(
 
     person_crop: np.ndarray = frame[y1:y2, x1:x2]
     if person_crop.size == 0:
-        return detections_to_draw, [], track_id
+        return detections_to_draw, [], [], track_id
 
     # --- STAGE 2: DETECT EPIs ON THE CROPPED PERSON ---
     epi_results = epi_detector.detect(
@@ -60,5 +64,5 @@ def process_person_track(
             detections_to_draw.append(epi_detection)
             epi_detections_on_person.append(epi_detection)
 
-    alerts = evaluator.check_compliance(epi_detections_on_person)
-    return detections_to_draw, alerts, track_id
+    missing_epis, present_epis = evaluator.check_compliance(epi_detections_on_person)
+    return detections_to_draw, missing_epis, present_epis, track_id
