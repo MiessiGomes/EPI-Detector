@@ -1,0 +1,16 @@
+# images
+dataset/*
+dataset/*
+dataset/*
+
+# videos
+videos_test/*
+
+# runs
+runs/*
+
+# model files
+*.h5
+
+# gemini
+*.md
