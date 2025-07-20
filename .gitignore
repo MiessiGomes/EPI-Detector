@@ -1,0 +1,10 @@
+# images
+dataset/*
+dataset/*
+dataset/*
+
+# videos
+videos_test/*
+
+# runs
+runs/*

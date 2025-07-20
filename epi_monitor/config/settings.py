@@ -3,7 +3,9 @@ from pathlib import Path
 from dotenv import dotenv_values
 from pydantic import BaseModel
 
-raw_env = dotenv_values(".env")
+env_path = Path(__file__).parent.parent.parent / ".env"
+
+raw_env = dotenv_values(dotenv_path=env_path)
 
 
 class Settings(BaseModel):
@@ -17,11 +19,18 @@ class Settings(BaseModel):
     # --- Model Configurations ---
     MODEL_PERSON_PATH: Path
     EPI_DETECTOR_PATH: Path
-    CONFIDENCE_THRESHOLD: float = 0.5
+    PERSON_CLASS_NAME: str = "person"
+    EPI_MODEL_IGNORE_CLASS_NAME: str = "Pessoa"
+    EPI_CONFIDENCE_THRESHOLD: float = 0.65
+    PERSON_CONFIDENCE_THRESHOLD: float = 0.65
 
     # --- Video Processing ---
     VIDEO_SOURCE: str = "0"
     SKIP_FRAMES: int = 2
+
+    # --- Event Logging ---
+    EVENT_LOG_DIR: Path = "events"
+    LOG_FILE_PATH: Path = "app.log"
 
     # --- Training Parameters ---
     DATA_PATH: Path
