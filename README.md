@@ -1,12 +1,12 @@
-# 👷‍♂️ PPE Monitor Project – Personal Protective Equipment Detection with Computer Vision
+# PPE Monitor Project – Personal Protective Equipment Detection with Computer Vision
 
-## 📌 Overview
+## Overview
 
 This project performs **PPE (Personal Protective Equipment) detection** in images or videos using YOLO (You Only Look Once) models. When a worker is identified **without the mandatory PPE**, an **automatic alert is triggered via webhook to a Discord channel**.
 
 ---
 
-## ✅ Features
+## Features
 
 - Detects people and PPE such as: helmets, gloves, boots, masks, earmuffs, goggles, protective clothing.
 - Verifies **compliance** between the person and the mandatory PPE.
@@ -16,7 +16,7 @@ This project performs **PPE (Personal Protective Equipment) detection** in image
 
 ---
 
-## 🧠 Dataset
+## Dataset
 
 The dataset used is in YOLO format with the following classes:
 
@@ -33,7 +33,7 @@ names: [
 
 ---
 
-## 🧱 Folder Structure
+## Folder Structure
 
 ```
 epi_monitor/
@@ -53,7 +53,7 @@ epi_monitor/
 
 ---
 
-## ⚙️ Environment Variables (.env)
+## Environment Variables (.env)
 
 ```env
 DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/YOUR_WEBHOOK
@@ -64,7 +64,7 @@ VIDEO_SOURCE=0  # 0 for webcam, or path to video
 
 ---
 
-## 🔍 Detection and Compliance
+## Detection and Compliance
 
 The verification is based on the following rules:
 
@@ -78,12 +78,12 @@ In addition, the check compares nearby bounding boxes (e.g., a person and a helm
 
 ---
 
-## 📤 Discord Alert Webhook
+## Discord Alert Webhook
 
 ### Alert example:
 
 ```
-🚨 NON-COMPLIANCE ALERT
+NON-COMPLIANCE ALERT
 Person detected without mandatory PPE:
 - Helmet
 - Goggles
@@ -92,7 +92,7 @@ Timestamp: 2025-07-19 14:32:10
 
 ---
 
-## ▶️ How to Run the Project
+## ▶How to Run the Project
 
 ### 1. Install the requirements:
 
@@ -110,17 +110,17 @@ python main.py
 
 ---
 
-## 🧠 Technical Requirements
+## Technical Requirements
 
 * Python 3.12
-* Ultralytics YOLO (v8)
+* Ultralytics YOLO (v11)
 * OpenCV
 * dotenv
 * requests (for Discord)
 
 ---
 
-## 🔮 Future Improvements
+## Future Improvements
 
 * Support for multiple simultaneous cameras
 * Real-time dashboard with Streamlit
@@ -129,7 +129,7 @@ python main.py
 
 ---
 
-## 🧑‍💻 Author
+## Author
 
 **José Ricardo**
 Specialist in Computer Vision, Deep Learning, and intelligent automation.
@@ -138,6 +138,6 @@ Medium: [medium.com/@miessigomes](https://medium.com/@josericardocv)
 
 ---
 
-## 📄 License
+## License
 
 MIT License
